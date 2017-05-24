@@ -1,0 +1,9 @@
+{
+  "name": "arbes-react-poc",
+  "version": "1.0.0",
+  "description": "Proof of concept for react based spa app",
+  "main": "index.js",
+  "repository": "https://github.com/butchyyyy/arbes_react_poc.git",
+  "author": "Milan Koníř <Konir.M@gmail.com>",
+  "license": "MIT"
+}
