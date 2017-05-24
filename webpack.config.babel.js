@@ -1,15 +1,18 @@
 import path from 'path'
+import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
+  template: './public/index.html',
   filename: 'index.html',
   inject: 'body',
 })
 
-export default {
+module.exports = {
   entry: [
-    './src/index.tsx',
+    'babel-polyfill',
+    'react-hot-loader/patch',
+    'index.tsx',
   ],
   output: {
     filename: 'bundle.js',
@@ -17,12 +20,19 @@ export default {
   },
   module: {
     rules: [
-      { test: /.tsx?$/, use: 'babel!ts', exclude: '/node_modules/' },
+      { test: /.tsx?$/, use: ['babel-loader', 'ts-loader'], exclude: '/node_modules/' },
     ],
   },
   devtool: 'source-map',
+  devServer: {
+    hot: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+  },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
+    modules: ['src', 'node_modules'],
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    HtmlWebpackPluginConfig],
 }

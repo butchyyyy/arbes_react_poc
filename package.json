@@ -2,8 +2,42 @@
   "name": "arbes-react-poc",
   "version": "1.0.0",
   "description": "Proof of concept for react based spa app",
-  "main": "index.js",
+  "main": "index.tsx",
   "repository": "https://github.com/butchyyyy/arbes_react_poc.git",
   "author": "Milan Koníř <Konir.M@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": [
+    "> 1%"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors",
+    "test": "tslint --project tsconfig.json && jest",
+    "prod:build": "webpack -p"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.22",
+    "@types/react": "^15.0.24",
+    "@types/react-dom": "^15.5.0",
+    "@types/webpack-env": "^1.13.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^2.28.0",
+    "jest": "^20.0.3",
+    "react-hot-loader": "next",
+    "ts-loader": "^2.1.0",
+    "tslint": "^5.3.2",
+    "tslint-react": "^3.0.0",
+    "typescript": "^2.3.2",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  }
 }
