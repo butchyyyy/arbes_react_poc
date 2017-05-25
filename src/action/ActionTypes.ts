@@ -1,0 +1,3 @@
+export const ADD_PAYMENT_ORDER = "ADD_PAYMENT_ORDER"
+
+export const ADD_BANK_ACCOUNT = "ADD_BANK_ACCOUNT"

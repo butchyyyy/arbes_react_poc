@@ -1,13 +1,37 @@
 import React from "react"
 
-import {BankAccountListView} from "components/BankAccountListView"
+import {connect} from "react-redux"
+
+import {addBankAccount} from "bankaccounts/BankAccountAction"
+import {BankAccountListView} from "bankaccounts/BankAccountListView"
+import {store} from "ConfigureStore"
 import {BankAccount} from "data/BankAccount"
 
-const bankAccounts: BankAccount[] = [
-  new BankAccount(1, "15651651/0800"),
-  new BankAccount(2, "54646764/0800"),
-]
+interface IAppProps {
+  bankAccounts: BankAccount[]
+}
 
-const App = () => <div><h1>List of your bank accounts:</h1><BankAccountListView bankAccounts={bankAccounts}/></div>
+class App extends React.Component<IAppProps, {}> {
 
-export default App
+  public render() {
+    return (
+        <div>
+          <h1>List of bank accounts:</h1>
+          <BankAccountListView bankAccounts={this.props.bankAccounts}/>
+          <button onClick={this.handleAddBankAccountClick}>Add Bank Account</button>
+        </div>
+    )
+  }
+
+  private handleAddBankAccountClick() {
+    const bankAccount = new BankAccount(null, "added bank account")
+    store.dispatch(addBankAccount(bankAccount))
+  }
+
+}
+
+const mapStateToProps = (state) => ({
+  bankAccounts: state.bankAccounts,
+})
+
+export default connect(mapStateToProps)(App)

@@ -1,6 +1,6 @@
 import path from 'path'
-import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './public/index.html',
@@ -10,8 +10,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: [
-    'babel-polyfill',
     'react-hot-loader/patch',
+    'babel-polyfill',
+    'webpack-dev-server/client?http://localhost:8080',
     'index.tsx',
   ],
   output: {
@@ -20,12 +21,13 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /.tsx?$/, use: ['babel-loader', 'ts-loader'], exclude: '/node_modules/' },
+      { test: /\.(ts|tsx)$/, use: ['babel-loader', 'ts-loader'], exclude: '/node_modules/' },
     ],
   },
   devtool: 'source-map',
   devServer: {
     hot: true,
+    inline: true,
     contentBase: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -34,5 +36,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     HtmlWebpackPluginConfig],
 }
