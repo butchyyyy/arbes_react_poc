@@ -5,5 +5,5 @@ import {BankAccount} from "../data/BankAccount"
 
 export const addBankAccount = createAction<BankAccount, BankAccount>(
     ADD_BANK_ACCOUNT,
-    (bankAccount: BankAccount) => (BankAccount),
+    (bankAccount: BankAccount) => bankAccount,
 )
