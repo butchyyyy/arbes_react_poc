@@ -11,6 +11,14 @@ interface IAppProps {
   addBankAccount: () => void
 }
 
+interface IAppStateFromProps {
+  bankAccounts: BankAccount[]
+}
+
+interface IAppDispatchFromProps {
+  addBankAccount: () => void
+}
+
 export class App extends React.Component<IAppProps, {}> {
 
   constructor(props) {
@@ -24,7 +32,6 @@ export class App extends React.Component<IAppProps, {}> {
           <h1>List of bank accounts:</h1>
           <BankAccountListView bankAccounts={this.props.bankAccounts}/>
           <button onClick={this.onClickAddBankAccount}>Add Account</button>
-          pretty pls?
         </div>
     )
   }
@@ -46,4 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect<IAppStateFromProps, IAppDispatchFromProps, void>(mapStateToProps, mapDispatchToProps)(App)
