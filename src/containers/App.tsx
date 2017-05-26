@@ -2,6 +2,8 @@ import React from "react"
 
 import {connect} from "react-redux"
 
+import {Button} from "react-bootstrap"
+
 import {addBankAccount} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
 import {BankAccount} from "data/BankAccount"
@@ -31,7 +33,7 @@ export class App extends React.Component<IAppProps, {}> {
         <div>
           <h1>List of bank accounts:</h1>
           <BankAccountListView bankAccounts={this.props.bankAccounts}/>
-          <button onClick={this.onClickAddBankAccount}>Add Account</button>
+          <Button bsStyle="primary" onClick={this.onClickAddBankAccount}>Add Account</Button>
         </div>
     )
   }
