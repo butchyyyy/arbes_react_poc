@@ -1,8 +1,8 @@
-import {combineReducers, createStore, compose} from "redux"
+import {createStore, Store} from "redux"
 
 import {BankAccount} from "data/BankAccount"
 import {PaymentOrder} from "data/PaymentOrder"
-import {rootReducer} from "./RootReducer"
+import {rootReducer} from "RootReducer"
 
 export interface IState {
   bankAccounts: BankAccount[]
@@ -17,13 +17,13 @@ const initialState: IState = {
   paymentOrders: [],
 }
 
-export const store = createStore(rootReducer, initialState)
-
-if (module.hot) {
-  module.hot.accept("./RootReducer", () => {
-    const reducer = require("./RootReducer")
-    store.replaceReducer(reducer)
-  })
+export function configureStore(): Store<IState> {
+  const store = createStore<IState>(rootReducer, initialState)
+  if (module.hot) {
+    module.hot.accept("RootReducer", () => {
+      const nextReducer = require("RootReducer").rootReducer
+      store.replaceReducer(nextReducer)
+    })
+  }
+  return store
 }
-
-export const getState = () => store.getState() as IState

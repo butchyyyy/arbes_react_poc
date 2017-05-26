@@ -4,28 +4,33 @@ import {connect} from "react-redux"
 
 import {addBankAccount} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
-import {store} from "ConfigureStore"
 import {BankAccount} from "data/BankAccount"
 
 interface IAppProps {
   bankAccounts: BankAccount[]
+  addBankAccount: () => void
 }
 
-class App extends React.Component<IAppProps, {}> {
+export class App extends React.Component<IAppProps, {}> {
+
+  constructor(props) {
+    super(props)
+    this.onClickAddBankAccount = this.onClickAddBankAccount.bind(this)
+  }
 
   public render() {
     return (
         <div>
           <h1>List of bank accounts:</h1>
           <BankAccountListView bankAccounts={this.props.bankAccounts}/>
-          <button onClick={this.handleAddBankAccountClick}>Add Bank Account</button>
+          <button onClick={this.onClickAddBankAccount}>Add Account</button>
+          pretty pls?
         </div>
     )
   }
 
-  private handleAddBankAccountClick() {
-    const bankAccount = new BankAccount(null, "added bank account")
-    store.dispatch(addBankAccount(bankAccount))
+  private onClickAddBankAccount() {
+    this.props.addBankAccount()
   }
 
 }
@@ -34,4 +39,11 @@ const mapStateToProps = (state) => ({
   bankAccounts: state.bankAccounts,
 })
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => ({
+  addBankAccount: () => {
+    const bankAccount = new BankAccount(null, "added bank account")
+    dispatch(addBankAccount(bankAccount))
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
