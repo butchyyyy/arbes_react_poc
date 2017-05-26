@@ -1,4 +1,5 @@
-import {createStore, Store} from "redux"
+import {createStore, Store } from "redux"
+import {composeWithDevTools} from "redux-devtools-extension"
 
 import {BankAccount} from "data/BankAccount"
 import {PaymentOrder} from "data/PaymentOrder"
@@ -18,7 +19,7 @@ const initialState: IState = {
 }
 
 export function configureStore(): Store<IState> {
-  const store = createStore<IState>(rootReducer, initialState)
+  const store = createStore<IState>(rootReducer, initialState, composeWithDevTools())
   if (module.hot) {
     module.hot.accept("RootReducer", () => {
       const nextReducer = require("RootReducer").rootReducer
