@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+import { HashRouter } from "react-router-dom"
+
 import {AppContainer} from "react-hot-loader"
 import {Provider} from "react-redux"
 
@@ -10,9 +12,11 @@ import App from "containers/App"
 const render = (Component: any, reduxStore) => {
   ReactDOM.render(
       <Provider store={reduxStore}>
-        <AppContainer>
-          <Component/>
-        </AppContainer>
+        <HashRouter>
+          <AppContainer>
+            <Component/>
+          </AppContainer>
+        </HashRouter>
       </Provider>,
       document.getElementById("root"),
   )

@@ -13,4 +13,3 @@ export class BankAccountListView extends React.Component<IBankAccountListViewPro
   }
 
 }
-
