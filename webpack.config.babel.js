@@ -22,6 +22,18 @@ module.exports = {
   module: {
     rules: [
       { test: /\.(ts|tsx)$/, use: ['babel-loader', 'ts-loader'], exclude: '/node_modules/' },
+      { test: /\.(less|css)$/, use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            importLoaders: 1,
+            sourceMap: true,
+          }
+        },
+        'less-loader'
+      ]}
     ],
   },
   devtool: 'source-map',
@@ -31,7 +43,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx', '.css', '.less'],
     modules: ['src', 'node_modules'],
   },
   plugins: [

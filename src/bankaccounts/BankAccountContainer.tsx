@@ -8,6 +8,8 @@ import {addBankAccount} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
 import {BankAccount} from "data/BankAccount"
 
+import styles from "./BankAccount.less"
+
 interface IProps {
   bankAccounts: BankAccount[]
   addBankAccount: () => void
@@ -30,7 +32,7 @@ export class BankAccountContainer extends React.Component<IProps, {}> {
 
   public render() {
     return (
-        <div>
+        <div className={styles.bankAccount}>
           <h1>List of bank accounts:</h1>
           <BankAccountListView bankAccounts={this.props.bankAccounts}/>
           <Button bsStyle="primary" onClick={this.onClickAddBankAccount}>Add Account</Button>
