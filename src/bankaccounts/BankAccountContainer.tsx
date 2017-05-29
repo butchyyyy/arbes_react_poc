@@ -23,7 +23,7 @@ interface IDispatchFromProps {
   addBankAccount: () => void
 }
 
-export class BankAccountContainer extends React.Component<IProps, {}> {
+class BankAccountContainer extends React.Component<IProps, {}> {
 
   constructor(props) {
     super(props)
