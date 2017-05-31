@@ -17,6 +17,7 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -40,6 +41,7 @@ module.exports = {
   devServer: {
     hot: true,
     inline: true,
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist'),
   },
   resolve: {

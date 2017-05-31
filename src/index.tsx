@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import { HashRouter } from "react-router-dom"
+import {BrowserRouter} from "react-router-dom"
 
 import {AppContainer} from "react-hot-loader"
 import {Provider} from "react-redux"
@@ -12,11 +12,11 @@ import App from "containers/App"
 const render = (Component: any, reduxStore) => {
   ReactDOM.render(
       <Provider store={reduxStore}>
-        <HashRouter>
+        <BrowserRouter>
           <AppContainer>
             <Component/>
           </AppContainer>
-        </HashRouter>
+        </BrowserRouter>
       </Provider>,
       document.getElementById("root"),
   )
