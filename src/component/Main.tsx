@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router"
 
 import BankAccountContainer from "bankaccounts/BankAccountContainer"
 import {About} from "component/About"
-import {AddPaymentOrderContainer} from "paymentorders/AddPaymentOrderContainer"
+import AddPaymentOrderContainer from "paymentorders/AddPaymentOrderContainer"
 
 export class Main extends React.Component<any, any> {
 
