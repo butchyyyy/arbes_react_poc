@@ -10,18 +10,15 @@ import {BankAccount} from "data/BankAccount"
 
 import styles from "./BankAccount.less"
 
-interface IProps {
-  bankAccounts: BankAccount[]
-  addBankAccount: () => void
-}
-
 interface IStateFromProps {
   bankAccounts: BankAccount[]
 }
 
 interface IDispatchFromProps {
-  addBankAccount: () => void
+  addBankAccount: (bankAccount: BankAccount) => void
 }
+
+interface IProps extends IStateFromProps, IDispatchFromProps {}
 
 class BankAccountContainer extends React.Component<IProps, {}> {
 
@@ -41,7 +38,7 @@ class BankAccountContainer extends React.Component<IProps, {}> {
   }
 
   private onClickAddBankAccount() {
-    this.props.addBankAccount()
+    this.props.addBankAccount(new BankAccount(null, "Added bank account"))
   }
 
 }
@@ -51,10 +48,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  addBankAccount: () => {
-    const bankAccount = new BankAccount(null, "added bank account")
-    dispatch(addBankAccount(bankAccount))
-  },
+  addBankAccount: (bankAccount: BankAccount) => dispatch(addBankAccount(bankAccount)),
 })
 
 export default connect<IStateFromProps, IDispatchFromProps, void>(
