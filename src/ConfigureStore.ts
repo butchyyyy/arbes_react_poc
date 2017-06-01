@@ -22,8 +22,7 @@ export function configureStore(): Store<IState> {
   const store = createStore<IState>(rootReducer, initialState, composeWithDevTools())
   if (module.hot) {
     module.hot.accept("RootReducer", () => {
-      const nextReducer = require("RootReducer").rootReducer
-      store.replaceReducer(nextReducer)
+      store.replaceReducer(rootReducer)
     })
   }
   return store

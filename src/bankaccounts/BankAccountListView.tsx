@@ -11,9 +11,9 @@ export class BankAccountListView extends React.Component<IBankAccountListViewPro
 
   public render() {
     return (
-        <ul>
+        <div>
           {this.props.bankAccounts.map((ba) => <div key={ba.id}><BankAccountListItem bankAccount={ba}/></div>)}
-        </ul>
+        </div>
     )
   }
 

@@ -1,6 +1,6 @@
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack from 'webpack'
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var webpack = require('webpack')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './public/index.html',
@@ -10,9 +10,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
     'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:8080',
+    'react-hot-loader/patch',
     'index.tsx',
   ],
   output: {
@@ -40,7 +39,6 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     hot: true,
-    inline: true,
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist'),
   },
@@ -52,5 +50,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    HtmlWebpackPluginConfig],
+    HtmlWebpackPluginConfig,
+  ],
 }

@@ -27,8 +27,5 @@ const store = configureStore()
 render(App, store)
 
 if (module.hot) {
-  module.hot.accept("containers/App", () => {
-    const NextApp = require("containers/App").default
-    render(NextApp, store)
-  })
+  module.hot.accept("containers/App", () => render(App, store))
 }

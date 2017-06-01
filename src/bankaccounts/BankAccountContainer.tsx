@@ -2,7 +2,7 @@ import React from "react"
 
 import {connect} from "react-redux"
 
-import {Button} from "react-bootstrap"
+import {Button, Col} from "react-bootstrap"
 
 import {addBankAccount} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
@@ -29,11 +29,11 @@ class BankAccountContainer extends React.Component<IProps, {}> {
 
   public render() {
     return (
-        <div className={styles.bankAccount}>
+        <Col xs={12} className={styles.bankAccount}>
           <h1>List of bank accounts:</h1>
           <BankAccountListView bankAccounts={this.props.bankAccounts}/>
           <Button bsStyle="primary" onClick={this.onClickAddBankAccount}>Add Account</Button>
-        </div>
+        </Col>
     )
   }
 
