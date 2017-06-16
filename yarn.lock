@@ -41,6 +41,10 @@
   version "15.0.24"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.24.tgz#8a75299dc37906df327c18ca918bf97a55e7123b"
 
+"@types/redux-actions@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@types/redux-actions/-/redux-actions-1.2.6.tgz#cfdeea3271ebdabf23cdc237080e752b07171069"
+
 "@types/redux-form@^6.6.2":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-6.6.2.tgz#f3384046ab3609578cc28daf6c50231c25860a06"
@@ -4060,6 +4064,10 @@ redux-form@^6.7.0:
     lodash "^4.17.3"
     lodash-es "^4.17.3"
     prop-types "^15.5.6"
+
+redux-thunk@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
 redux@^3.6.0:
   version "3.6.0"

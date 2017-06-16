@@ -27,7 +27,8 @@
     "redux": "^3.6.0",
     "redux-actions": "^2.0.3",
     "redux-devtools-extension": "^2.13.2",
-    "redux-form": "^6.7.0"
+    "redux-form": "^6.7.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.22",
@@ -36,6 +37,7 @@
     "@types/react-dom": "^15.5.0",
     "@types/react-router": "^4.0.9",
     "@types/react-router-dom": "^4.0.4",
+    "@types/redux-actions": "^1.2.6",
     "@types/redux-form": "^6.6.2",
     "@types/webpack-env": "^1.13.0",
     "babel-cli": "^6.24.1",

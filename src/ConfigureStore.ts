@@ -1,28 +1,34 @@
-import {createStore, Store } from "redux"
+import {applyMiddleware, createStore, Store} from "redux"
 import {composeWithDevTools} from "redux-devtools-extension"
+import thunk from "redux-thunk"
 
 import {BankAccount} from "data/BankAccount"
 import {PaymentOrder} from "data/PaymentOrder"
 import {rootReducer} from "RootReducer"
 
+export interface BankAccountsState {
+  isFetching: boolean
+  items: BankAccount[]
+}
+
 export interface IState {
-  bankAccounts: BankAccount[]
+  bankAccounts: BankAccountsState
   paymentOrders: PaymentOrder[]
 }
 
 const initialState: IState = {
-  bankAccounts: [
-    new BankAccount(1, "15651651/0800"),
-    new BankAccount(2, "54646764/0800"),
-  ],
+  bankAccounts: {
+    isFetching: false,
+    items: [],
+  },
   paymentOrders: [],
 }
 
 export function configureStore(): Store<IState> {
-  const store = createStore<IState>(rootReducer, initialState, composeWithDevTools())
+  const store = createStore<IState>(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
   if (module.hot) {
     module.hot.accept("RootReducer", () => {
-      store.replaceReducer(rootReducer)
+      store.replaceReducer(require("RootReducer").default)
     })
   }
   return store

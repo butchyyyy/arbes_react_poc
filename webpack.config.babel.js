@@ -41,6 +41,14 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist'),
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:4010',
+        pathRewrite: {'^/api' : ''},
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.css', '.less'],

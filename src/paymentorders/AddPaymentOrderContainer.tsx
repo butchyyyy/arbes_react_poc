@@ -28,7 +28,7 @@ class AddPaymentOrderContainer extends React.Component<IProps, any> {
   public render() {
     return (
         <Col xs={12}>
-          <h1>Bank account: {this.props.bankAccount.accountNumber}</h1>
+          <h1>Bank account asd: {this.props.bankAccount.accountNumber}</h1>
           <Form horizontal={true} onSubmit={this.props.handleSubmit(this.handleSubmitPaymentOrder)}>
             <FormGroup>
               <Col componentClass={ControlLabel} xs={2}>Amount</Col>
@@ -70,7 +70,7 @@ class AddPaymentOrderContainer extends React.Component<IProps, any> {
 }
 
 const mapStateToProps = (state: IState, props: IProps) => ({
-  bankAccount: state.bankAccounts.find((item) => item.id === Number(props.match.params.bankAccountId)),
+  bankAccount: state.bankAccounts.items.find((item) => item.id === Number(props.match.params.bankAccountId)),
 })
 
 const connectedForm = reduxForm({

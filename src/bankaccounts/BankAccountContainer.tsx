@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 
 import {Button, Col} from "react-bootstrap"
 
-import {addBankAccount} from "bankaccounts/BankAccountAction"
+import {addBankAccount, fetchBankAccounts} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
 import {BankAccount} from "data/BankAccount"
 
@@ -16,6 +16,7 @@ interface IStateFromProps {
 
 interface IDispatchFromProps {
   addBankAccount: (bankAccount: BankAccount) => void
+  fetchBankAccounts: () => void
 }
 
 interface IProps extends IStateFromProps, IDispatchFromProps {}
@@ -37,18 +38,23 @@ class BankAccountContainer extends React.Component<IProps, {}> {
     )
   }
 
+  public componentDidMount() {
+    this.props.fetchBankAccounts()
+  }
+
   private onClickAddBankAccount() {
-    this.props.addBankAccount(new BankAccount(null, "Added bank account"))
+    this.props.addBankAccount({accountNumber: "Added bank account"})
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  bankAccounts: state.bankAccounts,
+  bankAccounts: state.bankAccounts.items,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   addBankAccount: (bankAccount: BankAccount) => dispatch(addBankAccount(bankAccount)),
+  fetchBankAccounts: () => dispatch(fetchBankAccounts()),
 })
 
 export default connect<IStateFromProps, IDispatchFromProps, void>(
