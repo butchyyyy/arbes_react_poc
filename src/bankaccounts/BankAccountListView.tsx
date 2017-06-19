@@ -1,7 +1,7 @@
 import React from "react"
 
-import {BankAccount} from "../data/BankAccount"
-import {BankAccountListItem} from "./BankAccountListItem"
+import {BankAccountListItem} from "bankaccounts/BankAccountListItem"
+import {BankAccount} from "data/BankAccount"
 
 export interface IBankAccountListViewProps {
   bankAccounts: BankAccount[]

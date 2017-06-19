@@ -28,7 +28,7 @@ class AddPaymentOrderContainer extends React.Component<IProps, any> {
   public render() {
     return (
         <Col xs={12}>
-          <h1>Bank account asd: {this.props.bankAccount.accountNumber}</h1>
+          <h1>Bank account: {this.props.bankAccount.accountNumber}</h1>
           <Form horizontal={true} onSubmit={this.props.handleSubmit(this.handleSubmitPaymentOrder)}>
             <FormGroup>
               <Col componentClass={ControlLabel} xs={2}>Amount</Col>
@@ -65,6 +65,7 @@ class AddPaymentOrderContainer extends React.Component<IProps, any> {
   }
 
   private handleSubmitPaymentOrder() {
+    // TODO
   }
 
 }

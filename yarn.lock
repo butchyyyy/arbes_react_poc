@@ -22,6 +22,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-redux@^4.4.43":
+  version "4.4.43"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-4.4.43.tgz#f17d1b59b7899ada072c1c18ac5641245ad3aabd"
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0"
+
 "@types/react-router-dom@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.0.4.tgz#49f4a7037958f743e764b807fcbc8062fe46e493"

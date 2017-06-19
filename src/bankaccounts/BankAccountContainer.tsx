@@ -8,6 +8,8 @@ import {addBankAccount, fetchBankAccounts} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
 import {BankAccount} from "data/BankAccount"
 
+import {IState} from "../ConfigureStore"
+
 import styles from "./BankAccount.less"
 
 interface IStateFromProps {
@@ -48,7 +50,7 @@ class BankAccountContainer extends React.Component<IProps, {}> {
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: IState) => ({
   bankAccounts: state.bankAccounts.items,
 })
 
@@ -57,5 +59,5 @@ const mapDispatchToProps = (dispatch) => ({
   fetchBankAccounts: () => dispatch(fetchBankAccounts()),
 })
 
-export default connect<IStateFromProps, IDispatchFromProps, void>(
+export default connect<IStateFromProps, IDispatchFromProps, IProps>(
     mapStateToProps, mapDispatchToProps)(BankAccountContainer)
