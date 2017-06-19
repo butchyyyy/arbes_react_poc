@@ -9,6 +9,8 @@ import {login} from "login/LoginActions"
 
 import styles from "login/LoginForm.less"
 
+import {Spinner} from "component/spinner/Spinner"
+
 interface StateToProps {
   isLoggingIn: boolean
 }
@@ -34,37 +36,39 @@ class LoginForm extends React.Component<Props, {}> {
     return (
         <Col xs={6} xsOffset={3} className={styles.loginForm}>
           <Panel header={<strong>Sign in to continue</strong>}>
-            <Form horizontal={true} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-              <FormGroup>
-                <Col componentClass={ControlLabel} xs={3}>Login</Col>
-                <Col xs={9}>
-                  <Field
-                      className="form-control"
-                      name="login"
-                      component="Input"
-                      type="text"
-                      placeholder="Enter login name or email address"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col componentClass={ControlLabel} xs={3}>Password</Col>
-                <Col xs={9}>
-                  <Field
-                      className="form-control"
-                      name="password"
-                      component="Input"
-                      type="password"
-                      placeholder="Enter password"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup>
-                <Col xsOffset={3} xs={10}>
-                  <Button bsStyle="primary" type="submit">Submit</Button>
-                </Col>
-              </FormGroup>
-            </Form>
+            <Spinner loading={this.props.isLoggingIn}>
+              <Form horizontal={true} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                <FormGroup>
+                  <Col componentClass={ControlLabel} xs={3}>Login</Col>
+                  <Col xs={9}>
+                    <Field
+                        className="form-control"
+                        name="login"
+                        component="Input"
+                        type="text"
+                        placeholder="Enter login name or email address"
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup>
+                  <Col componentClass={ControlLabel} xs={3}>Password</Col>
+                  <Col xs={9}>
+                    <Field
+                        className="form-control"
+                        name="password"
+                        component="Input"
+                        type="password"
+                        placeholder="Enter password"
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup>
+                  <Col xsOffset={3} xs={10}>
+                    <Button bsStyle="primary" type="submit">Submit</Button>
+                  </Col>
+                </FormGroup>
+              </Form>
+            </Spinner>
           </Panel>
         </Col>
     )
