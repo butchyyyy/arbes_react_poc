@@ -1,3 +1,6 @@
+@spinner-width: 50px;
+@spinner-height: 30px;
+
 .mask {
   z-index: 100000;
   opacity: 0.3;
@@ -6,14 +9,14 @@
 }
 
 .spinner {
-  width: 50px;
-  height: 30px;
+  width: @spinner-width;
+  height: @spinner-height;
   text-align: center;
   font-size: 10px;
   left: 50%;
   top: 50%;
-  margin-left: -25px;
-  margin-top: -15px;
+  margin-left: -@spinner-width/2;
+  margin-top: -@spinner-height/2;
   position: absolute;
   z-index: 100001;
 }
