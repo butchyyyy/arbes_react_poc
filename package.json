@@ -16,6 +16,7 @@
     "prod:build": "webpack -p"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
