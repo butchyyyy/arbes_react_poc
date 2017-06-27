@@ -7,18 +7,11 @@ import { Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap"
 import {logout} from "login/LoginActions"
 import {connect} from "react-redux"
 
-interface StateToProps {
-
-}
-
-interface DispatchToProps {
+interface DispatchProps {
   logout: () => void
 }
 
-interface Props extends StateToProps, DispatchToProps {
-}
-
-export class Menu extends React.Component<Props, {}> {
+export class MenuComponent extends React.Component<DispatchProps, {}> {
 
   constructor(props) {
     super(props)
@@ -59,11 +52,8 @@ export class Menu extends React.Component<Props, {}> {
 
 }
 
-const mapStateToProps = () => ({
-})
-
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch): DispatchProps => ({
   logout: () => dispatch(logout()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export const Menu: React.ComponentClass<{}> = connect(null, mapDispatchToProps)(MenuComponent)

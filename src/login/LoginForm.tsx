@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Col, ControlLabel, Form, FormGroup, Panel} from "react-bootstrap"
-import {DataShape, Field, FormProps, reduxForm} from "redux-form"
+import {Field, FormProps, reduxForm} from "redux-form"
 
 import {connect} from "react-redux"
 
@@ -11,21 +11,16 @@ import styles from "login/LoginForm.less"
 
 import {Spinner} from "component/spinner/Spinner"
 
-interface StateToProps {
+interface StateProps {
   isLoggingIn: boolean
 }
 
-interface DispatchToProps {
+interface DispatchProps {
   login: () => void
 }
 
-interface MergedProps extends StateToProps, DispatchToProps {
-}
-
-interface Props extends MergedProps, FormProps<DataShape, MergedProps, any> {
-}
-
-class LoginForm extends React.Component<Props, {}> {
+class LoginFormComponent
+    extends React.Component<StateProps & DispatchProps & FormProps<any, any, any>, {}> {
 
   constructor(props) {
     super(props)
@@ -80,16 +75,16 @@ class LoginForm extends React.Component<Props, {}> {
 
 }
 
-const mapStateToProps = (state: IState, props: Props) => ({
+const mapStateToProps = (state: IState): StateProps => ({
   isLoggingIn: state.login.isLoggingIn,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch): DispatchProps => ({
   login: () => dispatch(login()),
 })
 
 const form = reduxForm({
   form: "loginForm",
-})(LoginForm)
+})(LoginFormComponent)
 
-export default connect(mapStateToProps, mapDispatchToProps)(form)
+export const LoginForm: React.ComponentClass<{}> = connect(mapStateToProps, mapDispatchToProps)(form)

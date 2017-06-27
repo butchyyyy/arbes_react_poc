@@ -1,8 +1,8 @@
 import React from "react"
 
-import {connect} from "react-redux"
-
 import {Button, Col} from "react-bootstrap"
+import {connect} from "react-redux"
+import {RouteComponentProps} from "react-router"
 
 import {addBankAccount, fetchBankAccounts} from "bankaccounts/BankAccountAction"
 import {BankAccountListView} from "bankaccounts/BankAccountListView"
@@ -12,18 +12,17 @@ import {IState} from "../ConfigureStore"
 
 import styles from "./BankAccount.less"
 
-interface IStateFromProps {
+interface StateProps {
   bankAccounts: BankAccount[]
 }
 
-interface IDispatchFromProps {
+interface DispatchProps {
   addBankAccount: (bankAccount: BankAccount) => void
   fetchBankAccounts: () => void
 }
 
-interface IProps extends IStateFromProps, IDispatchFromProps {}
-
-class BankAccountContainer extends React.Component<IProps, {}> {
+class BankAccountComponent
+    extends React.Component<StateProps & DispatchProps & RouteComponentProps<{}>, {}> {
 
   constructor(props) {
     super(props)
@@ -50,14 +49,14 @@ class BankAccountContainer extends React.Component<IProps, {}> {
 
 }
 
-const mapStateToProps = (state: IState) => ({
+const mapStateToProps = (state: IState): StateProps => ({
   bankAccounts: state.bankAccounts.items,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch): DispatchProps => ({
   addBankAccount: (bankAccount: BankAccount) => dispatch(addBankAccount(bankAccount)),
   fetchBankAccounts: () => dispatch(fetchBankAccounts()),
 })
 
-export default connect<IStateFromProps, IDispatchFromProps, IProps>(
-    mapStateToProps, mapDispatchToProps)(BankAccountContainer)
+export const BankAccountContainer: React.ComponentClass<RouteComponentProps<{}>> =
+    connect(mapStateToProps, mapDispatchToProps)(BankAccountComponent)

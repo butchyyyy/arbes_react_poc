@@ -1,24 +1,22 @@
 import React from "react"
 import {Button, Col, ControlLabel, Form, FormGroup} from "react-bootstrap"
 import {connect} from "react-redux"
-import {RouteComponentProps} from "react-router"
-import {Field, FormProps, reduxForm} from "redux-form"
+import {RouteComponentProps, RouteProps} from "react-router"
+import {DataShape, Field, FormProps, reduxForm} from "redux-form"
 
 import {IState} from "ConfigureStore"
 import {BankAccount} from "data/BankAccount"
 
-interface IParams {
+interface RouteParams {
   bankAccountId: number
 }
 
-interface IStateToProps {
+interface StateProps {
   bankAccount: BankAccount
 }
 
-interface IProps extends IStateToProps, RouteComponentProps<IParams>, FormProps<any, any, any> {
-}
-
-class AddPaymentOrderContainer extends React.Component<IProps, any> {
+class AddPaymentOrderComponent
+    extends React.Component<StateProps & RouteComponentProps<RouteParams> & FormProps<any, any, any>, {}> {
 
   constructor(props) {
     super(props)
@@ -70,12 +68,13 @@ class AddPaymentOrderContainer extends React.Component<IProps, any> {
 
 }
 
-const mapStateToProps = (state: IState, props: IProps) => ({
+const mapStateToProps = (state: IState, props: RouteComponentProps<RouteParams>): StateProps => ({
   bankAccount: state.bankAccounts.items.find((item) => item.id === Number(props.match.params.bankAccountId)),
 })
 
 const connectedForm = reduxForm({
   form: "addPaymentOrder",
-})(AddPaymentOrderContainer)
+})(AddPaymentOrderComponent)
 
-export default connect(mapStateToProps)(connectedForm)
+export const AddPaymentOrderContainer: React.ComponentClass<RouteComponentProps<RouteParams>> =
+    connect(mapStateToProps)(connectedForm)

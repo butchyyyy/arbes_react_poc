@@ -7,7 +7,7 @@ import {AppContainer} from "react-hot-loader"
 import {Provider} from "react-redux"
 
 import {configureStore} from "ConfigureStore"
-import App from "containers/App"
+import {App} from "containers/App"
 
 const render = (Component: any, reduxStore) => {
   ReactDOM.render(
