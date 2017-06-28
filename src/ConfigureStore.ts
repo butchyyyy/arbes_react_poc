@@ -24,8 +24,22 @@ export interface IState {
   paymentOrders: PaymentOrder[]
 }
 
+const initialState: IState = {
+  login: {
+    isLoggingIn: false,
+    isLoggingOut: false,
+    isLoggedIn: false,
+    errorMessage: "",
+  },
+  bankAccounts: {
+    isFetching: false,
+    items: [],
+  },
+  paymentOrders: [],
+}
+
 export function configureStore(): Store<IState> {
-  const store = createStore<IState>(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+  const store = createStore<IState>(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
   if (module.hot) {
     module.hot.accept("RootReducer", () => {
       store.replaceReducer(require("RootReducer").default)
