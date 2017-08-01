@@ -6,6 +6,8 @@ import {BankAccount} from "data/BankAccount"
 import {PaymentOrder} from "data/PaymentOrder"
 import {rootReducer} from "RootReducer"
 
+export const LOCAL_STORAGE_ID_TOKEN = "id_token"
+
 export interface LoginState {
   isLoggingIn: boolean
   isLoggingOut: boolean
@@ -28,7 +30,7 @@ const initialState: IState = {
   login: {
     isLoggingIn: false,
     isLoggingOut: false,
-    isLoggedIn: false,
+    isLoggedIn: localStorage.getItem(LOCAL_STORAGE_ID_TOKEN) === null ? false : true,
     errorMessage: "",
   },
   bankAccounts: {
