@@ -6,7 +6,7 @@ interface Props {
   loading: boolean
 }
 
-export class Spinner extends React.Component<Props, void> {
+export class Spinner extends React.Component<Props, {}> {
 
   public render() {
     if (this.props.loading) {

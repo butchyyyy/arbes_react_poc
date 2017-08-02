@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Col, ControlLabel, Form, FormGroup, Panel} from "react-bootstrap"
-import {Field, FormProps, reduxForm} from "redux-form"
+import {DecoratedComponentClass, Field, InjectedFormProps, reduxForm} from "redux-form"
 
 import {connect} from "react-redux"
 
@@ -20,7 +20,7 @@ interface DispatchProps {
 }
 
 class LoginFormComponent
-    extends React.Component<StateProps & DispatchProps & FormProps<any, any, any>, {}> {
+    extends React.Component<StateProps & DispatchProps & InjectedFormProps<{}, StateProps & DispatchProps>, {}> {
 
   constructor(props) {
     super(props)
@@ -39,7 +39,7 @@ class LoginFormComponent
                     <Field
                         className="form-control"
                         name="login"
-                        component="Input"
+                        component="input"
                         type="text"
                         placeholder="Enter login name or email address"
                     />
@@ -51,7 +51,7 @@ class LoginFormComponent
                     <Field
                         className="form-control"
                         name="password"
-                        component="Input"
+                        component="input"
                         type="password"
                         placeholder="Enter password"
                     />
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch): DispatchProps => ({
   login: () => dispatch(login()),
 })
 
-const form = reduxForm({
+const form: DecoratedComponentClass<{}, StateProps & DispatchProps> = reduxForm<{}, StateProps & DispatchProps>({
   form: "loginForm",
 })(LoginFormComponent)
 

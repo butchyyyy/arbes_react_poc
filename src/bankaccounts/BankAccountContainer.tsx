@@ -59,4 +59,4 @@ const mapDispatchToProps = (dispatch): DispatchProps => ({
 })
 
 export const BankAccountContainer: React.ComponentClass<RouteComponentProps<{}>> =
-    connect(mapStateToProps, mapDispatchToProps)(BankAccountComponent)
+    connect<StateProps, DispatchProps, RouteComponentProps<{}>>(mapStateToProps, mapDispatchToProps)(BankAccountComponent)
