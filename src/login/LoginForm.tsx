@@ -1,6 +1,6 @@
 import React from "react"
-import {Button, Col, ControlLabel, Form, FormGroup, Panel} from "react-bootstrap"
-import {DecoratedComponentClass, Field, InjectedFormProps, reduxForm} from "redux-form"
+import {Button, Col, Form, FormGroup, Panel} from "react-bootstrap"
+import {DecoratedComponentClass, InjectedFormProps, reduxForm} from "redux-form"
 
 import {connect} from "react-redux"
 
@@ -9,7 +9,10 @@ import {login} from "login/LoginActions"
 
 import styles from "login/LoginForm.less"
 
+import {BootstrapField} from "component/form/BootstrapField"
+import {BootstrapInput} from "component/form/BootstrapInput"
 import {Spinner} from "component/spinner/Spinner"
+import {required} from "validation/BasicValidation"
 
 interface StateProps {
   isLoggingIn: boolean
@@ -33,30 +36,8 @@ class LoginFormComponent
           <Panel header={<strong>Sign in to continue</strong>}>
             <Spinner loading={this.props.isLoggingIn}>
               <Form horizontal={true} onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-                <FormGroup>
-                  <Col componentClass={ControlLabel} xs={3}>Login</Col>
-                  <Col xs={9}>
-                    <Field
-                        className="form-control"
-                        name="login"
-                        component="input"
-                        type="text"
-                        placeholder="Enter login name or email address"
-                    />
-                  </Col>
-                </FormGroup>
-                <FormGroup>
-                  <Col componentClass={ControlLabel} xs={3}>Password</Col>
-                  <Col xs={9}>
-                    <Field
-                        className="form-control"
-                        name="password"
-                        component="input"
-                        type="password"
-                        placeholder="Enter password"
-                    />
-                  </Col>
-                </FormGroup>
+                <BootstrapField name="login" component={BootstrapInput} type="text" validate={required} label="Login" labelXs={3} controlXs={9}/>
+                <BootstrapField name="password" component={BootstrapInput} type="password" validate={required} label="Password" labelXs={3} controlXs={9}/>
                 <FormGroup>
                   <Col xsOffset={3} xs={10}>
                     <Button bsStyle="primary" type="submit">Submit</Button>

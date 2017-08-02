@@ -2,7 +2,7 @@ import {createAction} from "redux-actions"
 import {setTimeout} from "timers"
 
 import {RECEIVE_LOGIN, RECEIVE_LOGOUT, REQUEST_LOGIN, REQUEST_LOGOUT} from "action/ActionTypes"
-import {LOCAL_STORAGE_ID_TOKEN} from "ConfigureStore";
+import {LOCAL_STORAGE_ID_TOKEN} from "ConfigureStore"
 
 export const requestLogin = createAction(REQUEST_LOGIN)
 
