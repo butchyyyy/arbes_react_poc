@@ -5,13 +5,17 @@ import { LinkContainer } from "react-router-bootstrap"
 import { Glyphicon, Nav, Navbar, NavItem } from "react-bootstrap"
 
 import {logout} from "login/LoginActions"
+
+import {ChangeLanguage} from "component/ChangeLanguage"
 import {connect} from "react-redux"
+
+import {InjectedTranslateProps, translate} from "react-i18next"
 
 interface DispatchProps {
   logout: () => void
 }
 
-export class MenuComponent extends React.Component<DispatchProps, {}> {
+export class MenuComponent extends React.Component<DispatchProps & InjectedTranslateProps, {}> {
 
   constructor(props) {
     super(props)
@@ -19,6 +23,8 @@ export class MenuComponent extends React.Component<DispatchProps, {}> {
   }
 
   public render() {
+    const {t} = this.props
+
     return (
         <Navbar inverse={true} collapseOnSelect={true}>
           <Navbar.Header>
@@ -30,15 +36,17 @@ export class MenuComponent extends React.Component<DispatchProps, {}> {
           <Navbar.Collapse>
             <Nav>
               <LinkContainer to="/" exact={true}>
-                <NavItem>Bank Accounts</NavItem>
+                <NavItem>{t("menuBankAccounts")}</NavItem>
               </LinkContainer>
               <LinkContainer to="/about">
-                <NavItem>About</NavItem>
+                <NavItem>{t("menuAbout")}</NavItem>
               </LinkContainer>
             </Nav>
             <Nav pullRight={true}>
+              <ChangeLanguage lang="cs"/>
+              <ChangeLanguage lang="en"/>
               <NavItem onClick={this.handleLogout}>
-                <Glyphicon glyph="log-out"/> Logout
+                <Glyphicon glyph="log-out"/> {t("menuLogout")}
               </NavItem>
             </Nav>
           </Navbar.Collapse>
@@ -56,4 +64,4 @@ const mapDispatchToProps = (dispatch): DispatchProps => ({
   logout: () => dispatch(logout()),
 })
 
-export const Menu: React.ComponentClass<{}> = connect(null, mapDispatchToProps)(MenuComponent)
+export const Menu: React.ComponentClass<{}> = connect(null, mapDispatchToProps)(translate("App")(MenuComponent))

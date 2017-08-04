@@ -1,5 +1,6 @@
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var CopyWerbpackPlugin = require('copy-webpack-plugin')
 var webpack = require('webpack')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -7,6 +8,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body',
 })
+
+const CopyWebpackPluginConfig = new CopyWerbpackPlugin([{context: 'public/locales/', from: '**/*', to: 'locales'}])
 
 module.exports = {
   entry: [
@@ -33,7 +36,7 @@ module.exports = {
           }
         },
         'less-loader'
-      ]}
+      ]},
     ],
   },
   devtool: 'source-map',
@@ -59,5 +62,6 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     HtmlWebpackPluginConfig,
+    CopyWebpackPluginConfig,
   ],
 }
